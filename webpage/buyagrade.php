@@ -30,11 +30,11 @@
 			
 			<dt>Section</dt>
 			<dd>
-				<select>
+				<select name="section">
 					<optgroup label="(Select a selection)">
 						<?php
 							for($x=65; $x<73;$x++){ ?>
-								<option name="<?= "M".chr($x) ?>"><?= "M".chr($x) ?></option>
+								<option value="<?= "M".chr($x) ?>"><?= "M".chr($x) ?></option>
 						<?php } ?>
 					</optgroup>
 				</select>
@@ -43,11 +43,11 @@
 			
 			<dt>Credit Card</dt>
 			<dd>
-				<input type="text" enabled="false" name="creditCard">
+				<input type="text" name="CardNumber">
 			</dd>
 			<dd>
-				<input type="radio" name="Visa">Visa
-				<input type="radio" name="MasterCard">MasterCard
+				<input type="radio" name="cardType" value="Visa">Visa
+				<input type="radio" name="cardType" value="MasterCard">MasterCard
 			</dd>
 		</dl>
 
@@ -57,9 +57,27 @@
 
 	<?php
 	} else { 
-			$name = $_REQUEST["name"]; ?>
+			$name = $_REQUEST["name"]; 
+			$section = $_REQUEST["section"];
+			$typeCard = $_REQUEST["cardType"];
+			$numberCard = $_REQUEST["CardNumber"];
+			?>
 
-		<h1>Hello <span><?= $name ?></span> have successfully submited </h1>
+			<div>
+				<h1>Thanks, sucker!</h1>
+			</div>
+		<p>Your information has been recorded</p>
+
+		<dl>
+			<dt>Name</dt>
+			<dd><?= $name ?></dd>
+			
+			<dt>Section</dt>
+			<dd><?= $section ?></dd>
+			
+			<dt>Credit Card</dt>
+			<dd><?= $numberCard."(".$typeCard.")" ?></dd>
+		</dl>
 
 		<?php } ?>
 	</body>
