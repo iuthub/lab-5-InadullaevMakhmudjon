@@ -53,11 +53,17 @@
 		</dl>
 
 			<input type="submit" value="I am a giant sucker.">
-		
 	</form>
 
 	<?php
-	} else { 
+		}else{ 
+		if(($_REQUEST["name"] == "") || ($_REQUEST["section"] == "")||
+			($_REQUEST["cardType"] == "")||($_REQUEST["CardNumber"] == "")){ ?>
+				<h1>Sorry</h1>
+		<p>You didn't fill out the form completely. <a href="buyagrade.php"> Try again?</a></p>
+
+		<?php 
+			}else{
 			$name = $_REQUEST["name"]; 
 			$section = $_REQUEST["section"];
 			$typeCard = $_REQUEST["cardType"];
@@ -86,6 +92,7 @@
 		<p>Here all the suckers who have submitted here:</p>
 		<pre><?= file_get_contents("suckers.txt") ?></pre>
 
-		<?php } ?>
+		<?php }
+		} ?>
 	</body>
 </html>
