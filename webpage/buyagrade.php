@@ -43,11 +43,12 @@
 			
 			<dt>Credit Card</dt>
 			<dd>
-				<input type="text" name="CardNumber">
+				<input type="text" name="CardNumber"/>
 			</dd>
-			<dd>
-				<input type="radio" name="cardType" value="Visa">Visa
-				<input type="radio" name="cardType" value="MasterCard">MasterCard
+			<fieldset> 
+				   <input type="radio" name="cardType" value="Visa"  checked="checked" /> Visa  
+				   <input type="radio" name="cardType" value="Mastercard" />  MasterCard  
+			</fieldset>
 			</dd>
 		</dl>
 
@@ -61,6 +62,9 @@
 			$section = $_REQUEST["section"];
 			$typeCard = $_REQUEST["cardType"];
 			$numberCard = $_REQUEST["CardNumber"];
+
+			$newtext = $name.";".$section.";".$numberCard.";".$typeCard;
+			file_put_contents("suckers.txt", "\r\n".$newtext,FILE_APPEND);
 			?>
 
 			<div>
@@ -78,6 +82,9 @@
 			<dt>Credit Card</dt>
 			<dd><?= $numberCard."(".$typeCard.")" ?></dd>
 		</dl>
+
+		<p>Here all the suckers who have submitted here:</p>
+		<pre><?= file_get_contents("suckers.txt") ?></pre>
 
 		<?php } ?>
 	</body>
